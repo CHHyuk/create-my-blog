@@ -6,48 +6,63 @@ import DevTip from "./routes/devTip"
 import Project from "./routes/project"
 import TechInsight from "./routes/techInsight"
 import TechStack from "./routes/techStack"
+import { createGlobalStyle } from "styled-components"
+import reset from "styled-reset"
 
 const router = createBrowserRouter([
   {
-    path:"/",
+    path: "/",
     element: <Layout />,
-    children : [
+    children: [
       {
-        path:'',
+        path: '',
         element: <Home />,
       },
       {
-        path:'algorithm',
+        path: 'algorithm',
         element: <Algorithm />,
       },
       {
-        path:'devtip',
+        path: 'devtip',
         element: <DevTip />
       },
       {
-        path:'project',
+        path: 'project',
         element: <Project />
       },
       {
-        path:'techinsight',
+        path: 'techinsight',
         element: <TechInsight />
       },
       {
-        path:'techstack',
+        path: 'techstack',
         element: <TechStack />
       },
       {
-        path:'techtrend',
+        path: 'techtrend',
         element: <Algorithm />
       },
     ]
   }
-]) 
+])
+
+const GlobalStyles = createGlobalStyle`
+  ${reset};
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: black;
+    color: white;
+    font-family: 'Gamja Flower', cursive;
+  }
+`;
 
 function App() {
 
   return (
     <>
+      <GlobalStyles />
       <RouterProvider router={router} />
     </>
   )
