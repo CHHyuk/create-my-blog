@@ -6,11 +6,9 @@ import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast'
 
 const Button = styled.span`
-  width: 8rem;
   background-color: white;
   color: black;
   font-weight: 700;
-  font-size: 24px;
   padding: 10px 20px;
   border-radius: 50px;
   border:0;
@@ -19,6 +17,17 @@ const Button = styled.span`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
+  @media (max-width:768px) {
+    font-size: 0;
+    width: 2.5rem;
+    gap: 0px;
+  }
+
+  @media (min-width: 769px) {
+    font-size: 24px;
+    width: 8rem;
+  }
 `
 
 const Logo = styled.img`
