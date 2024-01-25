@@ -17,6 +17,9 @@ const Button = styled.span`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
 
   @media (max-width:768px) {
     font-size: 0;
