@@ -58,6 +58,14 @@ const GlobalStyles = createGlobalStyle`
     background-color: black;
     color: white;
     font-family: 'Gamja Flower', cursive;
+  
+  }
+
+  button {
+    font-family: 'Gamja Flower', cursive;
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    appearance: none; 
   }
 `;
 
