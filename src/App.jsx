@@ -8,6 +8,8 @@ import TechInsight from "./routes/techInsight"
 import TechStack from "./routes/techStack"
 import { createGlobalStyle } from "styled-components"
 import reset from "styled-reset"
+import { useState, useEffect } from "react"
+import LoadingScreen from "./components/loading-screen"
 
 const router = createBrowserRouter([
   {
@@ -59,11 +61,17 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 function App() {
+  const [isLoading, setLoading] = useState(true);
+  const init = async () => {
+    setTimeout(() => setLoading(false), 2000)
+  }
+
+  useEffect(() => { init(); }, []);
 
   return (
     <>
       <GlobalStyles />
-      <RouterProvider router={router} />
+      {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
     </>
   )
 }
