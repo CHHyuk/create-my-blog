@@ -42,8 +42,9 @@ export default function GoogleButton() {
   const handleLogin = async () => {
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-      toast.success(`${userName}님, 반갑습니다!`);
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user.displayName;
+      toast.success(`${user}님, 반갑습니다!`);
     } catch (error) {
       toast.error("로그인 실패: " + error.message);
     }
