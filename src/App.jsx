@@ -54,11 +54,11 @@ const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+
   body {
     background-color: black;
     color: white;
     font-family: 'Gamja Flower', cursive;
-  
   }
 
   button {
