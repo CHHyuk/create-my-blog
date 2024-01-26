@@ -67,6 +67,9 @@ const GlobalStyles = createGlobalStyle`
     -moz-appearance: none; 
     appearance: none; 
   }
+  ::-webkit-scrollbar {
+    display: none; 
+  }
 `;
 
 function App() {

@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import TypingAnimation from "../components/typing-animation"
+import LiveChat from "../components/chatting"
 
 const Wrapper = styled.section`
   display: flex;
@@ -73,7 +74,7 @@ const PopularPosts = styled.div`
 `
 
 // 라이브챗 섹션
-const LiveChat = styled.div`
+const ChatSection = styled.div`
 
 `
 
@@ -97,19 +98,17 @@ export default function Home() {
         </VisitorTitle>
         <Visiors>
           <TodayVisitors>
-          <TypingAnimation string={` Today: `} delay={4800} /> 
+            <TypingAnimation string={` Today: `} delay={4800} />
           </TodayVisitors>
           <TotalVisitors>
-          <TypingAnimation string={` Total: `} delay={4800} /> 
+            <TypingAnimation string={` Total: `} delay={4800} />
           </TotalVisitors>
         </Visiors>
       </VisitorStats>
       <PopularPosts>
         인기 게시글
       </PopularPosts>
-      <LiveChat>
-        실시간 채팅
-      </LiveChat>
+      <LiveChat />
     </Wrapper>
   )
 }
