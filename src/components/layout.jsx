@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
-
 `
 const LayoutWrapper = styled.div`
   display: flex;
@@ -27,6 +26,13 @@ const Title = styled.button`
   outline: none;
 `
 
+const ContentWrapper = styled.div`
+  margin: 0 auto;
+  padding: 100px 15px 50px 15px;
+  max-width: 52.25rem;
+  width: 100%;
+`
+
 export default function Layout() {
   const navigate = useNavigate();
   const handleTitle = () => {
@@ -39,7 +45,9 @@ export default function Layout() {
         <Title onClick={handleTitle}>웹개발 수난시대</Title>
         <GoogleButton />
       </LayoutWrapper>
-      <Outlet />
+      <ContentWrapper>
+        <Outlet />
+      </ContentWrapper>
     </Wrapper>
   )
 }
