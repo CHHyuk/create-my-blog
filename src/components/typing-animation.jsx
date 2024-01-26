@@ -41,7 +41,7 @@ export default function TypingTitle({ string, delay }) {
           setTypingFinished(true);
           clearInterval(typingInterval);
         }
-      }, 200);
+      }, 100);
     };
 
     const delayTimer = setTimeout(startTyping, delay);
