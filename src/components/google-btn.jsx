@@ -19,6 +19,8 @@ const Button = styled.span`
   cursor: pointer;
   &:hover {
     opacity: 0.8;
+    scale: 1.05;
+    transition: all 0.3s ease-in-out;
   }
 
   @media (max-width:768px) {

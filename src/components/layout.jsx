@@ -22,8 +22,14 @@ const Title = styled.button`
   background-color: black;
   color: white;
   cursor: pointer;
-  border: none; 
+  border: 1px solid black;
   outline: none;
+  padding: 20px;
+  border-radius: 10px;
+  &:hover {
+    border: 1px solid white;
+    transition: all 0.3s ease-in-out;
+  }
 `
 
 const ContentWrapper = styled.div`
