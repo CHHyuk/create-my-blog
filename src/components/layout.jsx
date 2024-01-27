@@ -63,6 +63,7 @@ const Text = styled(Link)`
     background-color: white;
     color: black;
     transition: all 0.3s ease-in-out;
+    font-weight: bold;
   }
 `
 
