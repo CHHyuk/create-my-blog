@@ -10,6 +10,7 @@ const Button = styled.span`
   color: black;
   font-weight: 700;
   padding: 10px 20px;
+  margin-right: 10px;
   border-radius: 50px;
   border:0;
   display: flex;

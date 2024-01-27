@@ -2,10 +2,18 @@ import { Outlet } from "react-router-dom";
 import GoogleButton from "./google-btn";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase';
+
+const allowedUID = 
 
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `
 const LayoutWrapper = styled.div`
   display: flex;
@@ -74,10 +82,28 @@ const ContentWrapper = styled.div`
   width: 100%;
 `
 
+const PostingBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  max-width: 52.25rem;
+  width: 100%
+`
+
 export default function Layout() {
+  const navigate = useNavigate();
+  const [user] = useAuthState(auth);
+
+  const handlePostClick = () => {
+    if (user?.uid === allowedUID) {
+      navigate('/posting');
+    } else {
+      toast.error('권한이 없습니다.');
+    }
+  };
 
   return (
     <Wrapper>
+      <Toaster />
       <LayoutWrapper>
         <Title to='/'>웹개발 수난시대</Title>
         <GoogleButton />
@@ -89,6 +115,9 @@ export default function Layout() {
         <Text to='/techinsight'>CS 지식</Text>
         <Text to='/techtrend'>기술 동향</Text>
       </NavigationWrapper>
+      <PostingBtn>
+        <Text onClick={handlePostClick}>작성하기</Text>
+      </PostingBtn>
       <ContentWrapper>
         <Outlet />
       </ContentWrapper>
