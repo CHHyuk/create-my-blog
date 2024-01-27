@@ -68,10 +68,14 @@ const TotalVisitors = styled.div`
   
 `
 
-// 인기 게시글 섹션
-const PopularPosts = styled.div`
-
+const Text = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -9rem;
+  font-size: 2rem;
 `
+
 export default function Home() {
   return (
     <Wrapper>
@@ -99,9 +103,9 @@ export default function Home() {
           </TotalVisitors>
         </Visiors>
       </VisitorStats>
-      <PopularPosts>
-        인기 게시글
-      </PopularPosts>
+      <Text>
+        방명록
+      </Text>
       <LiveChat />
     </Wrapper>
   )
