@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 import styled from 'styled-components';
+import { Editor } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor.css';
 
 const Form = styled.form`
+  background-color: white;
   display: flex;
   flex-direction: column;
-  max-width: 500px;
   margin: 0 auto;
 `;
 
 const Select = styled.select`
   padding: 10px;
   margin-bottom: 20px;
+  max-width: 100px;
 `;
 
 const Input = styled.input`
   padding: 10px;
   margin-bottom: 20px;
-`;
-
-const Textarea = styled.textarea`
-  padding: 10px;
-  margin-bottom: 20px;
+  max-width: 500px;
 `;
 
 const Button = styled.button`
@@ -39,6 +38,7 @@ const PostPage = () => {
   const [tag, setTag] = useState('');
   const [content, setContent] = useState('');
   const [collectionName, setCollectionName] = useState('');
+  const editorRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,16 +48,20 @@ const PostPage = () => {
       return;
     }
 
+    const editorInstance = editorRef.current.getInstance();
+    const markdownContent = editorInstance.getMarkdown();
+
     try {
       await addDoc(collection(db, collectionName), {
         title,
         tag,
-        content,
+        content: markdownContent, 
         createdAt: serverTimestamp(),
       });
+
       setTitle('');
       setTag('');
-      setContent('');
+      setContent(''); 
       setCollectionName('');
     } catch (error) {
       console.error("Error adding document: ", error);
@@ -92,11 +96,12 @@ const PostPage = () => {
         placeholder="태그"
         required
       />
-      <Textarea
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        placeholder="내용"
-        required
+      <Editor
+        ref={editorRef}
+        previewStyle="vertical"
+        height="600px"
+        initialEditType="markdown"
+        useCommandShortcut={true}
       />
       <Button type="submit">작성</Button>
     </Form>
