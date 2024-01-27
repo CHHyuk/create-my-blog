@@ -1,8 +1,7 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
+import { RouterProvider, createBrowserRouter} from "react-router-dom"
 import Layout from "./components/layout"
 import Algorithm from "./routes/algorithm"
 import Home from "./routes/home"
-import DevTip from "./routes/devTip"
 import Project from "./routes/project"
 import TechInsight from "./routes/techInsight"
 import TechStack from "./routes/techStack"
@@ -11,6 +10,13 @@ import reset from "styled-reset"
 import { useState, useEffect } from "react"
 import LoadingScreen from "./components/loading-screen"
 import { auth } from "./firebase"
+import AlgorithmDetail from "./routes/algorithmDetail"
+import ProjectDetail from "./routes/projectDetail"
+import TechInsightDetail from "./routes/techInsightDetail"
+import TechStackDetail from "./routes/techStackDetail"
+import TechTrendDetail from "./routes/techTrendDetail"
+import TechTrend from "./routes/techTrend"
+import PostPage from "./routes/postPage"
 
 const router = createBrowserRouter([
   {
@@ -26,26 +32,46 @@ const router = createBrowserRouter([
         element: <Algorithm />,
       },
       {
-        path: 'devtip',
-        element: <DevTip />
+        path: 'algorithm/:id',
+        element: <AlgorithmDetail />
       },
       {
         path: 'project',
-        element: <Project />
+        element: <Project />,
+      },
+      {
+        path: 'project/:id',
+        element: <ProjectDetail />
       },
       {
         path: 'techinsight',
-        element: <TechInsight />
+        element: <TechInsight />,
+      },
+      {
+        path: 'techinsight/:id',
+        element: <TechInsightDetail />
       },
       {
         path: 'techstack',
-        element: <TechStack />
+        element: <TechStack />,
+      },
+      {
+        path: 'techstack/:id',
+        element: <TechStackDetail />,
       },
       {
         path: 'techtrend',
-        element: <Algorithm />
+        element: <TechTrend />,
       },
+      {
+        path: 'techtrend/:id',
+        element: <TechTrendDetail />,
+      }
     ]
+  },
+  {
+    path: '/posting',
+    element: <PostPage />
   }
 ])
 
@@ -69,6 +95,11 @@ const GlobalStyles = createGlobalStyle`
   }
   ::-webkit-scrollbar {
     display: none; 
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
   }
 `;
 
