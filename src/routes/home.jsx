@@ -72,12 +72,6 @@ const TotalVisitors = styled.div`
 const PopularPosts = styled.div`
 
 `
-
-// 라이브챗 섹션
-const ChatSection = styled.div`
-
-`
-
 export default function Home() {
   return (
     <Wrapper>

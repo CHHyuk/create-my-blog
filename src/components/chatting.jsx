@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { getDatabase, ref, onValue, push, query, limitToLast } from 'firebase/database';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase';
+
 const Chat = styled.div`
   display: flex;
   flex-direction: column;
