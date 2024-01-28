@@ -1,10 +1,10 @@
-import { RouterProvider, createBrowserRouter} from "react-router-dom"
+import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Layout from "./components/layout"
 import Algorithm from "./routes/algorithm"
 import Home from "./routes/home"
 import Project from "./routes/project"
-import TechInsight from "./routes/techInsight"
-import TechStack from "./routes/techStack"
+import Programming from "./routes/programming"
+import CS from "./routes/cs"
 import { createGlobalStyle } from "styled-components"
 import reset from "styled-reset"
 import { useState, useEffect } from "react"
@@ -12,8 +12,8 @@ import LoadingScreen from "./components/loading-screen"
 import { auth } from "./firebase"
 import AlgorithmDetail from "./routes/algorithmDetail"
 import ProjectDetail from "./routes/projectDetail"
-import TechInsightDetail from "./routes/techInsightDetail"
-import TechStackDetail from "./routes/techStackDetail"
+import ProgrammingDetail from "./routes/programmingDetail"
+import CSDetail from "./routes/csDetail"
 import TechTrendDetail from "./routes/techTrendDetail"
 import TechTrend from "./routes/techTrend"
 import PostPage from "./routes/postPage"
@@ -44,20 +44,20 @@ const router = createBrowserRouter([
         element: <ProjectDetail />
       },
       {
-        path: 'techinsight',
-        element: <TechInsight />,
+        path: 'programming',
+        element: <Programming />,
       },
       {
-        path: 'techinsight/:id',
-        element: <TechInsightDetail />
+        path: 'programming/:id',
+        element: <ProgrammingDetail />
       },
       {
-        path: 'techstack',
-        element: <TechStack />,
+        path: 'cs',
+        element: <CS />,
       },
       {
-        path: 'techstack/:id',
-        element: <TechStackDetail />,
+        path: 'cs/:id',
+        element: <CSDetail />,
       },
       {
         path: 'techtrend',
@@ -100,6 +100,19 @@ const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
     color: white;
+  }
+
+  .toastui-editor-contents {
+    background-color: #707070;
+    padding: 0.2rem 1rem;
+    border-radius: 1rem;
+  }
+
+  .toastui-editor-contents pre {
+    background-color: #3d3d3d;
+  }
+  .toastui-editor-contents blockquote {
+    background-color: #272727;
   }
 `;
 
