@@ -38,9 +38,14 @@ const Container = styled.div`
   gap: 1rem;
   justify-content: center;
   align-items: center;
+  max-width: 45rem;
+  width: 100%;
 `
 
 const Items = styled.div`
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   border: 1px solid white;
   border-radius: 1rem;
   font-size: 1.5rem;
