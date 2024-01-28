@@ -32,58 +32,90 @@ const Tag = styled.div`
 `
 const Container = styled.div`
   display: flex;
-  border: 1px solid white;
+  flex-direction: column;
   padding: 2rem;
   border-radius: 1rem;
-  gap: 2rem;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
 `
 
 const Items = styled.div`
-  border: 1px solid red;
+  border: 1px solid white;
+  border-radius: 1rem;
+  font-size: 1.5rem;
   display: flex;
+  background-color: #363636;
+  padding: 1rem;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    scale: 1.05;
+    transition: all 0.3s ease-in-out; 
+  }
+`
+
+const TagTitle = styled.div`
+  padding: 1rem;
+  font-size: 2rem;
+`
+
+const ContainerTitle = styled.div`
+  padding: 1rem;
+  font-size: 2rem;
 `
 
 export default function Project() {
   const [projects, setProjects] = useState([]);
   const [tags, setTags] = useState([]);
+  const [selectedTag, setSelectedTag] = useState('');
 
   useEffect(() => {
     const fetchProjects = async () => {
       const querySnapshot = await getDocs(query(collection(db, 'project'), orderBy('createdAt', 'desc')));
       const projectsArray = [];
       const tagsSet = new Set();
-  
+
       querySnapshot.forEach((doc) => {
         const data = doc.data();
         projectsArray.push({ id: doc.id, ...data });
-        if (data.tags) {
-          tagsSet.add(data.tags);
-        }
+        tagsSet.add(data.tag); 
       });
-  
+
       setProjects(projectsArray);
       setTags([...tagsSet]);
     };
-  
+
     fetchProjects();
   }, []);
 
+  const handleTagClick = (tag) => {
+    setSelectedTag(tag);
+  };
+
+  const filteredProjects = selectedTag
+  ? projects.filter((project) => project.tag === selectedTag)
+  : projects;
+
+
   return (
     <Wrapper>
+      <TagTitle>태그</TagTitle>
       <TagList>
         {tags.map((tag, index) => (
-          <Tag key={index}>{tag}</Tag>
+          <Tag key={index} onClick={() => handleTagClick(tag)}>
+            {tag}
+          </Tag>
         ))}
       </TagList>
+      <ContainerTitle>목록</ContainerTitle>
       <Container>
-        {projects.map((project) => (
+        {filteredProjects.map((project) => (
           <Items key={project.id}>
             <Link to={`/project/${project.id}`}>{project.title}</Link>
           </Items>
         ))}
       </Container>
     </Wrapper>
-  )
+  );
 }
