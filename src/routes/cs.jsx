@@ -70,37 +70,37 @@ const ContainerTitle = styled.div`
   font-size: 2rem;
 `
 
-export default function TechTrend() {
-  const [techtrends, setTechTrends] = useState([]);
+export default function Cs() {
+  const [css, setCss] = useState([]);
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState('');
 
   useEffect(() => {
-    const fetchTechTrends = async () => {
-      const querySnapshot = await getDocs(query(collection(db, 'techtrend'), orderBy('createdAt', 'desc')));
-      const techtrendsArray = [];
+    const fetchCss = async () => {
+      const querySnapshot = await getDocs(query(collection(db, 'cs'), orderBy('createdAt', 'desc')));
+      const cssArray = [];
       const tagsSet = new Set();
 
       querySnapshot.forEach((doc) => {
         const data = doc.data();
-        techtrendsArray.push({ id: doc.id, ...data });
+        cssArray.push({ id: doc.id, ...data });
         tagsSet.add(data.tag); 
       });
 
-      setTechTrends(techtrendsArray);
+      setCss(cssArray);
       setTags([...tagsSet]);
     };
 
-    fetchTechTrends();
+    fetchCss();
   }, []);
 
   const handleTagClick = (tag) => {
     setSelectedTag(tag);
   };
 
-  const filteredTechTrends = selectedTag
-  ? techtrends.filter((techtrend) => techtrend.tag === selectedTag)
-  : techtrends;
+  const filteredCss = selectedTag
+  ? css.filter((cs) => cs.tag === selectedTag)
+  : css;
 
 
   return (
@@ -115,9 +115,9 @@ export default function TechTrend() {
       </TagList>
       <ContainerTitle>목록</ContainerTitle>
       <Container>
-        {filteredTechTrends.map((techtrend) => (
-          <Items key={techtrend.id}>
-            <Link to={`/techtrend/${techtrend.id}`}>{techtrend.title}</Link>
+        {filteredCss.map((cs) => (
+          <Items key={cs.id}>
+            <Link to={`/cs/${cs.id}`}>{cs.title}</Link>
           </Items>
         ))}
       </Container>

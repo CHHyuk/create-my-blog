@@ -70,37 +70,37 @@ const ContainerTitle = styled.div`
   font-size: 2rem;
 `
 
-export default function TechTrend() {
-  const [techtrends, setTechTrends] = useState([]);
+export default function Programming() {
+  const [programmings, setProgrammings] = useState([]);
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState('');
 
   useEffect(() => {
-    const fetchTechTrends = async () => {
-      const querySnapshot = await getDocs(query(collection(db, 'techtrend'), orderBy('createdAt', 'desc')));
-      const techtrendsArray = [];
+    const fetchProgrammings = async () => {
+      const querySnapshot = await getDocs(query(collection(db, 'programming'), orderBy('createdAt', 'desc')));
+      const programmingsArray = [];
       const tagsSet = new Set();
 
       querySnapshot.forEach((doc) => {
         const data = doc.data();
-        techtrendsArray.push({ id: doc.id, ...data });
+        programmingsArray.push({ id: doc.id, ...data });
         tagsSet.add(data.tag); 
       });
 
-      setTechTrends(techtrendsArray);
+      setProgrammings(programmingsArray);
       setTags([...tagsSet]);
     };
 
-    fetchTechTrends();
+    fetchProgrammings();
   }, []);
 
   const handleTagClick = (tag) => {
     setSelectedTag(tag);
   };
 
-  const filteredTechTrends = selectedTag
-  ? techtrends.filter((techtrend) => techtrend.tag === selectedTag)
-  : techtrends;
+  const filteredProgrammings = selectedTag
+  ? programmings.filter((programming) => programming.tag === selectedTag)
+  : programmings;
 
 
   return (
@@ -115,9 +115,9 @@ export default function TechTrend() {
       </TagList>
       <ContainerTitle>목록</ContainerTitle>
       <Container>
-        {filteredTechTrends.map((techtrend) => (
-          <Items key={techtrend.id}>
-            <Link to={`/techtrend/${techtrend.id}`}>{techtrend.title}</Link>
+        {filteredProgrammings.map((programming) => (
+          <Items key={programming.id}>
+            <Link to={`/programming/${programming.id}`}>{programming.title}</Link>
           </Items>
         ))}
       </Container>

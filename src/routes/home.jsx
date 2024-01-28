@@ -40,33 +40,33 @@ const BlogIntro = styled.div`
   text-align: right;
 
 `
-// 방문자 수 섹션
-const VisitorStats = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-  padding-bottom: 10rem;
-  max-width: 26rem;
-  width: 100%;
-`
-const VisitorTitle = styled.div`
-  font-size: 1.5rem;
-`
+// // 방문자 수 섹션
+// const VisitorStats = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 1.5rem;
+//   padding-bottom: 10rem;
+//   max-width: 26rem;
+//   width: 100%;
+// `
+// const VisitorTitle = styled.div`
+//   font-size: 1.5rem;
+// `
 
-const Visiors = styled.div`
-  display: flex;
-  gap: 5rem
-`
+// const Visiors = styled.div`
+//   display: flex;
+//   gap: 5rem
+// `
 
-const TodayVisitors = styled.div`
+// const TodayVisitors = styled.div`
   
-`
+// `
 
-const TotalVisitors = styled.div`
+// const TotalVisitors = styled.div`
   
-`
+// `
 
 const Text = styled.div`
   display: flex;
@@ -90,7 +90,7 @@ export default function Home() {
           <TypingAnimation string={" 블로그입니다."} delay={2500} />
         </BlogIntro>
       </IntroSection>
-      <VisitorStats>
+      {/* <VisitorStats>
         <VisitorTitle>
           <TypingAnimation string={" 방문자 수"} delay={4500} />
         </VisitorTitle>
@@ -102,7 +102,7 @@ export default function Home() {
             <TypingAnimation string={` Total: `} delay={4800} />
           </TotalVisitors>
         </Visiors>
-      </VisitorStats>
+      </VisitorStats> */}
       <Text>
         방명록
       </Text>
