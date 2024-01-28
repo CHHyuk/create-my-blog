@@ -61,8 +61,8 @@ const PostPage = () => {
 
       setTitle('');
       setTag('');
-      setContent(''); 
       setCollectionName('');
+      editorInstance.reset();
     } catch (error) {
       console.error("Error adding document: ", error);
     }
@@ -79,7 +79,7 @@ const PostPage = () => {
         <option value="project">프로젝트</option>
         <option value="programming">프로그래밍</option>
         <option value="algorithm">알고리즘</option>
-        <option value="techstack">CS지식</option>
+        <option value="cs">CS지식</option>
         <option value="techtrend">기술 동향</option>
       </Select>
       <Input
