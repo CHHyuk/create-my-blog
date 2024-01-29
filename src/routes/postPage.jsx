@@ -1,12 +1,16 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 import styled from 'styled-components';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
+import { useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase';
+
 
 const Form = styled.form`
-  background-color: white;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -15,7 +19,7 @@ const Form = styled.form`
 const Select = styled.select`
   padding: 10px;
   margin-bottom: 20px;
-  max-width: 100px;
+  max-width: 150px;
 `;
 
 const Input = styled.input`
@@ -36,9 +40,17 @@ const Button = styled.button`
 const PostPage = () => {
   const [title, setTitle] = useState('');
   const [tag, setTag] = useState('');
-  const [content, setContent] = useState('');
   const [collectionName, setCollectionName] = useState('');
   const editorRef = useRef();
+  const navigate = useNavigate();
+  const [user] = useAuthState(auth);
+
+  useEffect(() => {
+    if (!user || user.uid !== allowedUID) {
+      navigate('/');
+    }
+  }, [user, navigate]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,7 +67,7 @@ const PostPage = () => {
       await addDoc(collection(db, collectionName), {
         title,
         tag,
-        content: markdownContent, 
+        content: markdownContent,
         createdAt: serverTimestamp(),
       });
 
