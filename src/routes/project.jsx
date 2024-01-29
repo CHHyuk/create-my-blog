@@ -17,7 +17,7 @@ const TagList = styled.div`
   gap: 0.5rem;
   font-size: 1.3rem;
   padding: 0 0 3rem 0;
-
+  flex-wrap: wrap;
 `
 const Tag = styled.div`
   border: 1px solid white;  
@@ -42,7 +42,7 @@ const Container = styled.div`
   width: 100%;
 `
 
-const Items = styled.div`
+const Items = styled(Link)` 
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -52,11 +52,14 @@ const Items = styled.div`
   display: flex;
   background-color: #363636;
   padding: 1rem;
+  text-decoration: none; 
+  color: inherit; 
+
   &:hover {
     cursor: pointer;
     opacity: 0.8;
     scale: 1.05;
-    transition: all 0.3s ease-in-out; 
+    transition: all 0.3s ease-in-out;
   }
 `
 
@@ -84,7 +87,7 @@ export default function Project() {
       querySnapshot.forEach((doc) => {
         const data = doc.data();
         projectsArray.push({ id: doc.id, ...data });
-        tagsSet.add(data.tag); 
+        tagsSet.add(data.tag);
       });
 
       setProjects(projectsArray);
@@ -99,13 +102,13 @@ export default function Project() {
   };
 
   const filteredProjects = selectedTag
-  ? projects.filter((project) => project.tag === selectedTag)
-  : projects;
+    ? projects.filter((project) => project.tag === selectedTag)
+    : projects;
 
 
   return (
     <Wrapper>
-      <TagTitle>태그</TagTitle>
+      <TagTitle>프로젝트</TagTitle>
       <TagList>
         {tags.map((tag, index) => (
           <Tag key={index} onClick={() => handleTagClick(tag)}>
@@ -116,8 +119,8 @@ export default function Project() {
       <ContainerTitle>목록</ContainerTitle>
       <Container>
         {filteredProjects.map((project) => (
-          <Items key={project.id}>
-            <Link to={`/project/${project.id}`}>{project.title}</Link>
+          <Items to={`/project/${project.id}`} key={project.id}>
+            {project.title}
           </Items>
         ))}
       </Container>
