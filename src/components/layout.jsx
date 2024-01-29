@@ -14,6 +14,7 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
 `
 const LayoutWrapper = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ const LayoutWrapper = styled.div`
   padding: 15px 15px;
   max-width: 52.25rem;
   width: 100%;
+  border-bottom: 1px solid white;
 `
 
 const Title = styled(Link)`
@@ -50,28 +52,48 @@ const NavigationWrapper = styled.nav`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  gap: 0.3rem;
-  padding: 15px 15px;
+  padding: 10px 10px;
   max-width: 52.25rem;
   width: 100%;
+  flex-wrap: wrap;
 `
 
 
 const Text = styled(Link)`
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   background-color: black;
   color: white;
   cursor: pointer;
   border: 1px solid black;
   outline: none;
-  padding: 10px;
+  position: relative;
   border-radius: 10px;
-  &:hover {
+  flex-wrap: wrap;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
     background-color: white;
-    color: black;
-    transition: all 0.3s ease-in-out;
-    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 1rem;
+  }
+
+  &:hover::after {
+    opacity: 0.7;
+  }
+
+  @media (max-width:768px) {
+    padding: 5px;
+    font-size: 1.2rem;
+  }
+
+  @media (min-width: 769px) {
+    padding: 20px;
   }
 `
 
@@ -84,9 +106,10 @@ const ContentWrapper = styled.div`
 
 const PostingBtn = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: right;
   max-width: 52.25rem;
-  width: 100%
+  width: 100%;
+  margin: 0 0.5rem 0.5rem 0
 `
 
 export default function Layout() {
@@ -110,17 +133,17 @@ export default function Layout() {
       </LayoutWrapper>
       <NavigationWrapper>
         <Text to='/algorithm'>알고리즘</Text>
-        <Text to='/techstack'>프로그래밍</Text>
+        <Text to='/programming'>프로그래밍</Text>
         <Text to='/project'>프로젝트</Text>
-        <Text to='/techinsight'>CS 지식</Text>
-        <Text to='/techtrend'>기술 동향</Text>
+        <Text to='/cs'>CS지식</Text>
+        <Text to='/techtrend'>기술동향</Text>
       </NavigationWrapper>
-      <PostingBtn>
-        <Text onClick={handlePostClick}>작성하기</Text>
-      </PostingBtn>
       <ContentWrapper>
         <Outlet />
       </ContentWrapper>
+      <PostingBtn>
+        <Text onClick={handlePostClick}>작성하기</Text>
+      </PostingBtn>
     </Wrapper>
   )
 }
